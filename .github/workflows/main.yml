@@ -13,6 +13,10 @@ jobs:
     env:
       REPO_AUTHOR: nishanth
     steps:
+    
+      - name: Checkout the Repo
+        uses: actions/checkout@v3
+
       - name: Simple Build Print Statement
         run: |
           echo "This is a Build Job"
