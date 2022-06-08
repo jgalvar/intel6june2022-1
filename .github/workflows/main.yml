@@ -17,6 +17,7 @@ jobs:
         run: |
           echo "This is a Build Job"
           echo $REPO_AUTHOR > build.txt
+          sed -i 's/USERNAMEHOLDER/$REPO_AUTHOR/g' dev_config
 
       - name: Upload the Build.txt
         uses: actions/upload-artifact@v3
@@ -53,8 +54,8 @@ jobs:
       - name: Copy the Index.html to Ubuntu Server
         uses: marcodallasanta/ssh-scp-deploy@v1.2.0
         with:
-          local: 'build.txt'
-          remote: '~/build.txt'
+          local: 'dev_config'
+          remote: '~/dev_config'
           host: ${{secrets.HOST}}
           user: ${{secrets.USER}}
           key: ${{secrets.KEY}}
