@@ -13,7 +13,7 @@ jobs:
     env:
       REPO_AUTHOR: nishanth
     steps:
-    
+
       - name: Checkout the Repo
         uses: actions/checkout@v3
 
@@ -28,6 +28,12 @@ jobs:
         with:
           name: buildfile
           path: build.txt
+
+      - name: Upload the dev_config
+        uses: actions/upload-artifact@v3
+        with:
+          name: devconfig
+          path: dev_config
 
   test:
     if: github.repository == 'nishanthkumarpathi/intel6june2022'
@@ -54,6 +60,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: buildfile
+
+      - name: Download the devconfig
+        uses: actions/download-artifact@v3
+        with:
+          name: devconfig
 
       - name: Copy the Index.html to Ubuntu Server
         uses: marcodallasanta/ssh-scp-deploy@v1.2.0
