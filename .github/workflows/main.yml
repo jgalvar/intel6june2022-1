@@ -46,7 +46,7 @@ jobs:
           ls -la
 
       - name: Download the Build.txt file
-        uses: actions/download-artifacts@v3
+        uses: actions/download-artifact@v3
         with:
           name: buildfile
 
